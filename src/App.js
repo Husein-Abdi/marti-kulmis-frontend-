@@ -15,7 +15,6 @@ import PasswordReset from "./components/auth/PasswordReset";
 import Signup from "./components/auth/Signup";
 import BookingForm from "./components/bookings/BookingForm";
 import BookingsAdmin from "./components/bookings/BookingsAdmin";
-import BookingsHod from "./components/bookings/BookingsHod";
 import Bookinguser from "./components/bookings/BookingsUser";
 import AdminDashboard from "./components/dashboard/AdminDashboard";
 import UserDashboard from "./components/dashboard/UserDashboard";
@@ -74,13 +73,12 @@ const App = () => {
           
           <Route path="/halls" element={state.userType === "admin" ? <HallsAdmin/> : <Halls />}/>
           <Route exact path="/halls/:hallId/:hallName" element={state.userType === "admin" ?<HallsEdit /> : <Unauthorized />} />
-          <Route exact path="/bookingsEdit/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : process.env.REACT_APP_HOD_FEATURE &&  state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} />
+          <Route exact path="/bookingsEdit/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : process.env.REACT_APP_HOD_FEATURE &&  state.userType === "user" ? <BookingUpdateFrom/>  : <Unauthorized />} />
           
           
-          {/* <Route exact path="/bookings/:bookingId" element={state.userType === "admin" ? <BookingUpdateFrom/>  : state.userType === "hod" ? <BookingUpdateFrom/>  : <Unauthorized />} /> */}
           <Route path="/hallForm" element={state.userType === "admin" ?<HallForm /> : <Unauthorized />} />
 
-          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "user" ? <Bookinguser/> :  process.env.REACT_APP_HOD_FEATURE && state.userType === "hod" ? <BookingsHod/>  : <Unauthorized />} />
+          <Route path="/bookings" element={state.userType === "admin" ? <BookingsAdmin/> : state.userType === "user" ? <Bookinguser/> :  process.env.REACT_APP_HOD_FEATURE && state.userType === "user" ? <Bookinguser/>  : <Unauthorized />} />
           <Route exact path="/bookingForm/:hallId/:hallName" element={<BookingForm />} />
           {/* <Route path="/bookings" element={<Booking/>} /> */}
 
